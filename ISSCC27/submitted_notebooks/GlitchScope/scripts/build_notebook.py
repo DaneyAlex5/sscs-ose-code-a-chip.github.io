@@ -23,6 +23,8 @@ md(r"""
 
 *AI assistance.* The code, experiments and text were developed with substantial help from an AI assistant. The author defined the project, ran the server-side SPICE and GLOW experiments and reviewed the results.
 
+© 2026 École Polytechnique Fédérale de Lausanne (EPFL). Licensed under the Apache License 2.0 (see `LICENSE`); third-party material and its licences are listed in `NOTICE`.
+
 Two circuits with the same function and the same RTL activity can burn very different amounts of energy. Unequal
 path delays create glitches: short pulses that do no useful work but still charge and discharge capacitance. RTL
 simulation never sees them, yet in a 16×16 array multiplier they account for 87 % of the logic's dynamic energy. This

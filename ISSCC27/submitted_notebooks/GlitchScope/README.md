@@ -10,6 +10,8 @@ library). IEEE SSCS Code-a-Chip submission, ISSCC 2027.
 
 *AI assistance.* The code, experiments and text were developed with substantial help from an AI assistant. The author defined the project, ran the server-side SPICE and GLOW experiments and reviewed the results.
 
+© 2026 École Polytechnique Fédérale de Lausanne (EPFL). Licensed under the Apache License 2.0 (see `LICENSE`); third-party material and its licences are listed in `NOTICE`.
+
 Two circuits with the same function and the same RTL activity can burn very different energy: unequal path delays
 create *glitches*, short pulses that do no useful work but still charge capacitance. Given a gate-level netlist, a
 testbench VCD (or random vectors) and a Liberty file, GlitchScope
@@ -86,4 +88,6 @@ open-source place and route and in SPICE.
 
 ## Licence
 
-Apache-2.0.
+Copyright 2026 École Polytechnique Fédérale de Lausanne (EPFL). Licensed under the Apache License 2.0
+(see `LICENSE`). Third-party material included in this folder, and third-party material that is downloaded but not
+included, is listed with its licence in `NOTICE`.
