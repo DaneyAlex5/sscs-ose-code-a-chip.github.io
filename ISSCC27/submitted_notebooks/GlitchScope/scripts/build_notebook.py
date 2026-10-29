@@ -19,7 +19,9 @@ md(r"""
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sscs-ose/sscs-ose-code-a-chip.github.io/blob/main/ISSCC27/submitted_notebooks/GlitchScope/GlitchScope.ipynb)
 *IEEE SSCS Code-a-Chip, ISSCC 2027 submission* · Licence: Apache-2.0 ·
-**Team Glitch Hunters:** Daney Alex (INL, EDEE, EPFL, Lausanne, Switzerland) · [daney.alex@epfl.ch](mailto:daney.alex@epfl.ch) · GitHub [DaneyAlex5](https://github.com/DaneyAlex5)
+**Team Glitch Hunters:** Daney Alex (INL, EPFL) · Supervisor: Prof. Mahsa Shoaran (INL, EPFL) · [daney.alex@epfl.ch](mailto:daney.alex@epfl.ch) · GitHub [DaneyAlex5](https://github.com/DaneyAlex5)
+
+*AI assistance.* The code, experiments and text were developed with substantial help from an AI assistant. The author defined the project, ran the server-side SPICE and GLOW experiments and reviewed the results.
 
 Two circuits with the same function and the same RTL activity can burn very different amounts of energy. Unequal
 path delays create glitches: short pulses that do no useful work but still charge and discharge capacitance. RTL
@@ -500,8 +502,8 @@ extraction uncertainty.
 resized cells, hold buffers, the real clock tree on its own supply, every net's extracted wire capacitance (SPEF,
 lumped) and 24 parasitic-extracted cell types, on the same 40 cycles with inputs at the constrained 0.5 ns delay
 (`scripts/spice_confirm_postlayout.py`, 193 CPU-hours). No analytic flip-flop or clock-tree estimate is left in this
-number. All ten routed layouts in this notebook are DRC-clean: the router reports 0 DRC and 0 antenna violations, and
-Magic's full SKY130 rule deck finds 0 violations on each GDS (A10). There is no LVS, and wires carry no RC delay
+number. All ten routed layouts in this notebook are DRC-clean: Magic's full SKY130 rule deck finds 0 violations on
+each GDS, and the router reports 0 DRC and 0 antenna violations in every route log included (A10). There is no LVS, and wires carry no RC delay
 here.
 """)
 
@@ -788,7 +790,7 @@ accumulator's middle bits, i.e. the carry chain of the adder that follows the mu
 
 **The automatic fix, live.** The next cell runs `--optimize` on the registered 8×8 array multiplier from section 6
 (544 cells, 32 flip-flops). Every candidate placement is written out, verified on every cycle and measured. This
-takes about 7 minutes on one core; set `RUN_LIVE_OPTIMIZE = False` to show the cached run instead.
+takes about 7 minutes on a desktop core and about 15 on Colab's free runtime; set `RUN_LIVE_OPTIMIZE = False` to show the cached run instead.
 """)
 
 code(r"""
@@ -1263,8 +1265,8 @@ md(r"""
   multiplier's two group studies on 2 cores; single-cell screening on such designs is capped. A glitch-free gate is an
   ideal intervention: it bounds, but does not implement, a fix.
 * **Layout.** Post-layout analysis uses each net's lumped extracted capacitance (no RC delay along wires) and one clock
-  arrival time for all flip-flops. OpenROAD's detailed router reports 0 DRC and 0 antenna violations on every
-  layout (final `5_route_drc.rpt` empty). Independently, each routed DEF was streamed to GDS with KLayout and ORFS's
+  arrival time for all flip-flops. OpenROAD's detailed router reports 0 DRC and 0 antenna violations in the
+  five route logs included here (the other five logs were overwritten by a later no-op re-run). Independently, each routed DEF was streamed to GDS with KLayout and ORFS's
   `def2stream.py`, as `make gds` does, and checked by Magic with the PDK's own setup (`sky130A.magicrc`, `drc(full)`,
   Euclidean spacing): 0 violations on all ten layouts (`scripts/klayout_drc.sh`, `scripts/magic_drc_gds.sh`).
   An earlier route, where Magic itself imported the DEF, gave 3,713 flags on V2, all at via and pin-access geometry;

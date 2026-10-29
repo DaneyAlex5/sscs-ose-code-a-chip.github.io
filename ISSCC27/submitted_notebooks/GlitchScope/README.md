@@ -6,7 +6,9 @@
 glitch-energy analyser and verified glitch-aware register placement for standard-cell logic (SKY130, and any Liberty
 library). IEEE SSCS Code-a-Chip submission, ISSCC 2027.
 
-**Team Glitch Hunters:** Daney Alex (INL, EDEE, EPFL, Lausanne, Switzerland) · daney.alex@epfl.ch · GitHub [DaneyAlex5](https://github.com/DaneyAlex5)
+**Team Glitch Hunters:** Daney Alex (INL, EPFL) · Supervisor: Prof. Mahsa Shoaran (INL, EPFL) · daney.alex@epfl.ch · GitHub [DaneyAlex5](https://github.com/DaneyAlex5)
+
+*AI assistance.* The code, experiments and text were developed with substantial help from an AI assistant. The author defined the project, ran the server-side SPICE and GLOW experiments and reviewed the results.
 
 Two circuits with the same function and the same RTL activity can burn very different energy: unequal path delays
 create *glitches*, short pulses that do no useful work but still charge capacitance. Given a gate-level netlist, a
@@ -28,7 +30,7 @@ testbench VCD (or random vectors) and a Liberty file, GlitchScope
 
 | | |
 |---|---|
-| Automatic fix of a 2,368-cell 16×16 array multiplier, same latency and clock, measured in **transistor-level ngspice of the routed netlists** (extracted cells, real flip-flops and clock tree, extracted wire capacitance; 40 paired cycles) | **−36 %** energy (95 % CI 34–38 %), vs −24 % for min-period retiming; +14 % cell area; GlitchScope predicted −49 %; all ten routed layouts DRC-clean (Magic, full SKY130 deck) |
+| Automatic fix of a 2,368-cell 16×16 array multiplier, same latency and clock, measured in **transistor-level ngspice of the routed netlists** (extracted cells, real flip-flops and clock tree, extracted wire capacitance; 40 paired cycles) | **−36 %** energy (95 % CI 34–38 %), vs −24 % for min-period retiming; +14 % cell area; GlitchScope's model predicted −47.5 % after layout (−49 % before); all ten routed layouts DRC-clean (Magic, full SKY130 deck) |
 | Same fix before layout, transistor-level ngspice (analytic clock tree, no wires) | −37 % (CI 35–39 %) vs −20 % for min-period retiming |
 | Accuracy vs transistor-level SPICE on 7 circuits | glitch counts within 13 % on five (0.89–1.13×), c432 1.41×, 8×8 NOR array 1.36×; without filtering 1.8–3× over-count; energy within 13 % on six |
 | 68 ISCAS'85/'89, ITC'99 and EPFL circuits | glitch share medians 13–29 % of logic energy (1.6–84 %) |
